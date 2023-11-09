@@ -1,17 +1,17 @@
 import { Sequelize } from "sequelize";
 import database from "../Config/database.js";
-//DONE:
-export const GetArticulosByCantidadRepo = async (amount) => {
+//LoginRepo, LogoutRepo, ListarEmpleadosRepo, ListarEmpleadosRepo, EditarEmpleadoRepo, GetPuestosRepo, GetDepartamentosRepo, GetIdentificacionesRepo, InsertarEmpleadoRepo, ImpersonarRepo, EliminarEmpleadoRepo, PlanillaSemanalRepo, PlanillaMensualRepo, DejarImpersonarRepo
+export const LoginRepo = async (Username, Password) => {
    try {
       const stringSende='EXEC GetAllArticulosByCantidad  @QuantitySearch=:amount';
       const result = await database.query(
          stringSende,
         {
-          replacements: {amount},
+          replacements: {Username, Password},
           type: Sequelize.QueryTypes.RAW
         }
       );
-      return result[0];
+      return result;
   
    } catch (error) {
       console.log(error);
@@ -19,24 +19,21 @@ export const GetArticulosByCantidadRepo = async (amount) => {
       return false;
    }
 }
-//DONE:
-export const GetArticulosByNameRepo = async (name) => {
+
+export const LogoutRepo = async (Usuario) => {
    try {
       const stringSende='EXEC GetAllArticulosByName ';
       const param='@NameSearch_In=:name'
-      if(name==undefined | name ==''){
-         name="-1"
-      }
 
       const result = await database.query(
       (stringSende+param),
         {
-          replacements: {name},
+          replacements: {Usuario},
           type: Sequelize.QueryTypes.RAW
         }
       );
       console.log('Retrieved succesfully');
-      return result[0];
+      return result;
   
    } catch (error) {
       console.log(error);
@@ -44,20 +41,20 @@ export const GetArticulosByNameRepo = async (name) => {
       return false;
    }
 }
-//DONE:
-export const GetArticulosByCodeRepo = async (code) => {
+
+export const ListarEmpleadosRepo = async (Usuario,Filtro) => {
    try {
       const stringSende='EXEC GetArticulosByCode  @codigo_in=:code';
       const result = await database.query(
          stringSende,
         {
-          replacements: {code},
+          replacements: {Usuario,Filtro},
           type: Sequelize.QueryTypes.RAW
         }
       );
       console.log('Retrieved succesfully',result);
 
-      return result[0];
+      return result;
   
    } catch (error) {
       console.log(error);
@@ -66,18 +63,24 @@ export const GetArticulosByCodeRepo = async (code) => {
    }
 }
 
-export const GetArticulosByClassRepo = async (code) => {
+export const EditarEmpleadoRepo = async (Usuario,
+   idObjecive,NombreNuevo,
+   TipoIdNuevo, ValorID, FechaNacimiento, IdPuesto,
+   IdDepartamento) => {
    try {
       const stringSende='EXEC GetAllArticulosByClass  @Article_Class=:code';
       const result = await database.query(
          stringSende,
         {
-          replacements: {code},
+          replacements: {Usuario,
+            idObjecive,NombreNuevo,
+            TipoIdNuevo, ValorID, FechaNacimiento, IdPuesto,
+            IdDepartamento},
           type: Sequelize.QueryTypes.RAW
         }
       );
       console.log('Retrieved succesfully');
-      return result[0];
+      return result;
   
    } catch (error) {
       console.log(error);
@@ -85,8 +88,8 @@ export const GetArticulosByClassRepo = async (code) => {
       return false;
    }
 }
-//DONE:
-export const GetClasesRepo = async () => {
+
+export const GetPuestosRepo = async () => {
    try {
       // Llama al stored procedure utilizando Sequelize
       const result = await database.query('EXEC GetClases', {
@@ -101,55 +104,50 @@ export const GetClasesRepo = async () => {
 
    }
 }
-//DONE:
-export const InsertArticuloRepo = async (name,price,code,clase) => {
+
+export const GetDepartamentosRepo = async () => {
    try {
-      const stringSende='EXEC InsertArticulo  @nombre_in=:name,@precio_in=:price,@codigo_in=:code,@Clase_Articulo_in=:clase';
-      const result = await database.query(
-         stringSende.replace("N'","'"),
-        {
-          replacements: {name,price,code,clase},
-          type: Sequelize.QueryTypes.RAW
-        }
-      );
-      console.log('Succesfully inserted');
-      return true;
+      // Llama al stored procedure utilizando Sequelize
+      const result = await database.query('EXEC GetClases', {
+        type: Sequelize.QueryTypes.RAW
+      });
+      //en maq windows, esta mandando un array de 2 elems:[0] respuesta de server sql con forma de tabla, basicamente es una matriz,[1]elementos de
+      return result
   
    } catch (error) {
-      console.log(error);
-      console.error('Error al llamar al stored procedure');
-      return false;
+      console.error('Error al llamar al stored procedure:', error);
+      return false
+
    }
 }
-//DONE:
-export const InsertClaseRepo = async (Class_name) => {
-   console.log(Class_name);
+
+export const GetIdentificacionesRepo = async () => {
    try {
-      const stringSende='EXEC InsertClase  @ClassName_In=:Class_name';
-      const result = await database.query(
-         stringSende,
-        {
-          replacements: {Class_name},
-          type: Sequelize.QueryTypes.RAW
-        }
-      );
-      console.log('Clase insertada exitosamente');
-      return true;
+      // Llama al stored procedure utilizando Sequelize
+      const result = await database.query('EXEC GetClases', {
+        type: Sequelize.QueryTypes.RAW
+      });
+      //en maq windows, esta mandando un array de 2 elems:[0] respuesta de server sql con forma de tabla, basicamente es una matriz,[1]elementos de
+      return result
   
    } catch (error) {
-      console.log(error);
-      console.error('Error al llamar al stored procedure');
-      return false;
+      console.error('Error al llamar al stored procedure:', error);
+      return false
+
    }
 }
-//DONE:
-export const InsertUsuarioRepo = async (UserName,Password) => {
+
+export const InsertarEmpleadoRepo = async (Usuario, Nombre, TipoId,
+   ValorID, FechaNacimiento,
+   IdPuesto, IdDepartamento) => {
    try {
       const stringSende='EXEC InsertUsuario  @UserName_In=:UserName, @UserPass_In=:Password';
       const result = await database.query(
          stringSende,
         {
-          replacements: {UserName,Password},
+          replacements: {Usuario, Nombre, TipoId,
+            ValorID, FechaNacimiento,
+            IdPuesto, IdDepartamento},
           type: Sequelize.QueryTypes.RAW
         }
       );
@@ -162,14 +160,14 @@ export const InsertUsuarioRepo = async (UserName,Password) => {
       return false;
    }
 }
-//DONE:
-export const LoginCheckRepo = async (UserName,Password) => {
+
+export const ImpersonarRepo = async (Usuario, IDObjetivo) => {
    try {
       const stringSende='EXEC LoginCheck  @UserName_In=:UserName, @UserPass_In=:Password';
       const result = await database.query(
          stringSende,
         {
-          replacements: {UserName,Password},
+          replacements: {Usuario, IDObjetivo},
           type: Sequelize.QueryTypes.RAW
         }
       );
@@ -183,7 +181,8 @@ export const LoginCheckRepo = async (UserName,Password) => {
    }
 }
 
-export const UpdateArticuloRepo = async (target,name,price,code,clase) => {
+export const EliminarEmpleadoRepo = async (Usuario,
+   IDEmpleadoAEliminar) => {
    try {
       console.log("HERE: ",target)
       const stringSende='EXEC UpdateArticulo  ';
@@ -195,7 +194,8 @@ export const UpdateArticuloRepo = async (target,name,price,code,clase) => {
       const result = await database.query(
          stringSende+stringParamsA+stringParamsB+stringParamsC+stringParamsD+stringParamsE,
         {
-          replacements: {target,name,price,code,clase},
+          replacements: {Usuario,
+            IDEmpleadoAEliminar},
           type: Sequelize.QueryTypes.RAW
         }
       );
@@ -208,15 +208,56 @@ export const UpdateArticuloRepo = async (target,name,price,code,clase) => {
       return false;
    }
 }
-//DONE:
-export const BorrarArticuloRepo = async (code) => {
-   console.log(code);
+
+export const PlanillaSemanalRepo = async (Usuario) => {
    try {
       const stringSende='EXEC BorrarArticulo  @Target=:code';
       const result = await database.query(
          stringSende,
         {
-          replacements: {code},
+          replacements: {Usuario},
+          type: Sequelize.QueryTypes.RAW
+        }
+      );
+      console.log('Producto eliminado exitosamente');
+      return true;
+  
+   } catch (error) {
+      console.log(error);
+      console.error('Error al llamar al stored procedure');
+      return false;
+   }
+}
+export const PlanillaMensualRepo = async (Usuario) => {
+
+   try {
+      const stringSende='EXEC BorrarArticulo  @Target=:code';
+      const result = await database.query(
+         stringSende,
+        {
+          replacements: {Usuario},
+          type: Sequelize.QueryTypes.RAW
+        }
+      );
+      console.log('Producto eliminado exitosamente');
+      return true;
+  
+   } catch (error) {
+      console.log(error);
+      console.error('Error al llamar al stored procedure');
+      return false;
+   }
+}
+export const DejarImpersonarRepo = async (Usuario,
+   IdUsuarioEmpersonado) => {
+
+   try {
+      const stringSende='EXEC BorrarArticulo  @Target=:code';
+      const result = await database.query(
+         stringSende,
+        {
+          replacements: {Usuario,
+            IdUsuarioEmpersonado},
           type: Sequelize.QueryTypes.RAW
         }
       );

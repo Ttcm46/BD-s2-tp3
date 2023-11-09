@@ -1,97 +1,124 @@
 import { response, request } from "express";
-import { GetArticulosByCantidadRepo, GetArticulosByNameRepo, GetArticulosByCodeRepo,GetClasesRepo,InsertArticuloRepo,InsertClaseRepo,InsertUsuarioRepo,LoginCheckRepo,UpdateArticuloRepo,BorrarArticuloRepo,GetArticulosByClassRepo } from "../Repo/repo.js";
+import { LoginRepo, LogoutRepo, ListarEmpleadosRepo, ListarEmpleadosRepo, EditarEmpleadoRepo, GetPuestosRepo, GetDepartamentosRepo, GetIdentificacionesRepo, InsertarEmpleadoRepo, ImpersonarRepo, EliminarEmpleadoRepo, PlanillaSemanalRepo, PlanillaMensualRepo, DejarImpersonarRepo } from "../Repo/repo.js";
 
 
-export const GetArticulosByCantidadController = async(req = request, res = response) => {
-    const {amount} = req.body.data
-    const result = await GetArticulosByCantidadRepo(amount)
+export const LoginController = async(req = request, res = response) => {
+    const {Username, Password} = req.body.data
+    const result = await LoginRepo(Username, Password)
     
     res.status(200).json({
         result
     })
 }
-export const GetArticulosByNameController = async(req = request, res = response) => {
-    const {name} = req.body.data
-    const result = await GetArticulosByNameRepo(name)
+export const LogoutController = async(req = request, res = response) => {
+    const {Usuario} = req.body.data
+    const result = await LogoutRepo(Usuario)
     
     res.status(200).json({
         result
     })
 }
-export const GetArticulosByCodeController = async(req = request, res = response) => {
-    const {code} = req.body.data
-    const result = await GetArticulosByCodeRepo(code)
+export const ListarEmpleadosController = async(req = request, res = response) => {
+    const {Usuario,Filtro} = req.body.data
+    const result = await GetArticulosByCodeRepo(Usuario,Filtro)
     
     res.status(200).json({
         result
     })
 }
-export const GetArticulosByClaseController = async(req = request, res = response) => {
-    const {code} = req.body.data
-    const result = await GetArticulosByClassRepo(code)
+export const EditarEmpleadoController = async(req = request, res = response) => {
+    const {Usuario,
+        idObjecive,NombreNuevo,
+        TipoIdNuevo, ValorID, FechaNacimiento, IdPuesto,
+        IdDepartamento} = req.body.data
+    const result = await EditarEmpleadoRepo(Usuario,
+        idObjecive,NombreNuevo,
+        TipoIdNuevo, ValorID, FechaNacimiento, IdPuesto,
+        IdDepartamento)
     
     res.status(200).json({
         result
     })
 }
-export const GetClasesController = async(req = request, res = response) => {
+export const GetPuestosController = async(req = request, res = response) => {
 
-    const result = await GetClasesRepo()
+    const result = await GetPuestosRepo()
     
     res.status(200).json({
         result
     })
 }
-export const InsertArticuloController = async(req = request, res = response) => {
-    console.log(req.body)
-    const {name,price,code,clase} = req.body
-    const result = await InsertArticuloRepo(name,price,code,clase)
+export const GetDepartamentosController = async(req = request, res = response) => {
+
+    const result = await GetDepartamentosRepo()
 
     res.status(200).json({
         result
     })
 }
-export const InsertClaseController = async(req = request, res = response) => {
-    const {Class_name} =  req.body
-    console.log(req.body)
+export const GetIdentificacionesController = async(req = request, res = response) => {
 
-    const result = await InsertClaseRepo(Class_name)
+    const result = await GetIdentificacionesRepo()
     
     res.status(200).json({
         result
     })
 }
-export const InsertUsuarioController = async(req = request, res = response) => {
-    const {username,password} =  req.body
+export const InsertarEmpleadoController = async(req = request, res = response) => {
+    const {Usuario, Nombre, TipoId,
+        ValorID, FechaNacimiento,
+        IdPuesto, IdDepartamento} =  req.body
     console.log(req.body)
-    const result = await InsertUsuarioRepo(username,password)
+    const result = await InsertarEmpleadoRepo(Usuario, Nombre, TipoId,
+        ValorID, FechaNacimiento,
+        IdPuesto, IdDepartamento)
     
     res.status(200).json({
         result
     })
 }
-export const LoginCheckController = async(req = request, res = response) => {
-    const {username,password} = req.body
+export const ImpersonarController = async(req = request, res = response) => {
+    const {Usuario, IDObjetivo} = req.body
     console.log(req.body)
-    const result = await LoginCheckRepo(username,password)
+    const result = await ImpersonarRepo(Usuario, IDObjetivo)
     
     res.status(200).json({
         result
     })
 }
-export const UpdateArticuloController = async(req = request, res = response) => {
+export const EliminarEmpleadoController = async(req = request, res = response) => {
     
-    const {target,name,price,code,clase} = req.body
+    const {Usuario,
+        IDEmpleadoAEliminar} = req.body
     console.log(req.body)
-    const result = await UpdateArticuloRepo(target,name,price,code,clase)
+    const result = await EliminarEmpleadoRepo(Usuario,
+        IDEmpleadoAEliminar)
     
     res.status(200).json({
         result
     })
 }
-export const BorrarArticuloController = async(req = request, res = response) => {
-    const {code} = req.body
-    const result = await BorrarArticuloRepo(code)
+export const PlanillaSemanalController = async(req = request, res = response) => {
+    const {Usuario} = req.body
+    const result = await PlanillaSemanalRepo(Usuario)
+    
+    res.status(200).json({
+        result
+    })
+}
+export const PlanillaMensualController = async(req = request, res = response) => {
+    const {Usuario} = req.body
+    const result = await PlanillaMensualRepo(Usuario)
+    
+    res.status(200).json({
+        result
+    })
+}
+export const DejarImpersonarController = async(req = request, res = response) => {
+    const {Usuario,
+        IdUsuarioEmpersonado} = req.body
+    const result = await DejarImpersonarRepo(Usuario,
+        IdUsuarioEmpersonado)
     
     res.status(200).json({
         result

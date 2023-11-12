@@ -1,0 +1,157 @@
+Login
+    Tipo Usuario malo Password Malo --no admin
+        Enviado
+            {
+                "data":{
+                    "Username":"HOLA",
+                    "Password":"TEST"
+                }
+            }
+        Recibido    
+            {"result":[[{"":1}],3]}
+    Tipo Usuario correcto Password Malo --no admin
+        Enviado
+            {
+                "data": {
+                    "Username": "Pezele87",
+                    "Password": "TEST"
+                }
+            }
+        Recibido
+            {"result":[[{"":2}],4]}
+    Tipo Usuario correcto Password Correcto  --no admin
+        Enviado
+            {
+                "data": {
+                    "Username": "Pezele87",
+                    "Password": "Kd197#"
+                }
+            }
+        Recibido    
+            {"result":[[{"":2}],5]}
+    Tipo Usuario correcto Password Malo     --admin
+        Enviado
+            {
+                "data": {
+                    "Username": "Goku",
+                    "Password": "Kd197#"
+                }
+            }
+        Recibido
+            {"result":[[{"":2}],4]}
+    Tipo Usuario correcto Password correcto     --admin
+        Enviado
+            {
+                "data": {
+                    "Username": "Goku",
+                    "Password": "12345"
+                }
+            }
+        Recibido
+            {"result":[[{"":1}],5]}
+Logout
+    Enviado         --no cambia si es admin  o Usuario
+        {
+            "data": {
+                "Username": "Goku"
+            }
+        }
+    Resultado
+        {"result":[[],1]}
+Listar
+    Tipo  --No filter   '-1' para sin filtro
+        Enviado
+            {
+            "data": {
+                "Username": "Goku",
+                "Filtro": "-1"
+            }
+        }
+        Recibido
+            {"result":[[{"id":221,"Nombre":"Electricista"},{"id":217,"Nombre":"Electricista"},{"id":47,"Nombre":"Contador"},{"id":30,"Nombre":"Contador"},{"id":55,"Nombre":"Operador de Maquina"},{"id":144,"Nombre":"Operador de Maquina"},{"id":40,"Nombre":"Operador de Maquina"},{"id":226,"Nombre":"Operador de Maquina"},{"id":163,"Nombre":"Auxiliar de Laboratorio"},{"id":160,"Nombre":"Operador de Maquina"},{"id":199,"Nombre":"Operador de Maquina"},{"id":108,"Nombre":"Operador de Maquina"},{"id":128,"Nombre":"Operador de Maquina"},{"id":253,"Nombre":"Conserje"},{"id":88,"Nombre":"Secretariado"},{"id":117,"Nombre":"Secretariado"},{"id":134,"Nombre":"Electricista"},{"id":238,"Nombre":"Contador"},{"id":41,"Nombre":"Auxiliar de Laboratorio"},{"id":76,"Nombre":"Operador de Maquina"},{"id":92,"Nombre":"Contador"},{"id":85,"Nombre":"Conserje"},{"id":131,"Nombre":"Auxiliar de Laboratorio"},{"id":251,"Nombre":"Operador de Maquina"},{"id":48,"Nombre":"Operador de Maquina"},{"id":132,"Nombre":"Auxiliar de Laboratorio"},{"id":214,"Nombre":"Auxiliar de Laboratorio"},{"id":119,"Nombre":"Electricista"},{"id":74,"Nombre":"Conserje"},{"id":103,"Nombre":"Operador de Maquina"},{"id":196,"Nombre":"Auxiliar de Laboratorio"},{"id":6,"Nombre":"Auxiliar de Laboratorio"},{"id":228,"Nombre":"Operador de Maquina"},{"id":20,"Nombre":"Operador de Maquina"},{"id":71,"Nombre":"Electricista"},{"id":147,"Nombre":"Operador de Maquina"},{"id":29,"Nombre":"Operador de Maquina"},{"id":18,"Nombre":"Electricista"},{"id":177,"Nombre":"Auxiliar de Laboratorio"},{"id":149,"Nombre":"Secretariado"},{"id":32,"Nombre":"Secretariado"},{"id":186,"Nombre":"Electricista"},{"id":153,"Nombre":"Electricista"},{"id":69,"Nombre":"Auxiliar de Laboratorio"},{"id":136,"Nombre":"Auxiliar de Laboratorio"},{"id":156,"Nombre":"Conserje"},{"id":58,"Nombre":"Contador"},{"id":256,"Nombre":"Operador de Maquina"},{"id":16,"Nombre":"Auxiliar de Laboratorio"},{"id":12,"Nombre":"Secretariado"},{"id":158,"Nombre":"Electricista"},{"id":102,"Nombre":"Contador"},{"id":96,"Nombre":"Contador"},{"id":179,"Nombre":"Operador de Maquina"},{"id":95,"Nombre":"Electricista"},{"id":212,"Nombre":"Secretariado"},{"id":141,"Nombre":"Auxiliar de Laboratorio"},{"id":113,"Nombre":"Conserje"},{"id":176,"Nombre":"Electricista"},{"id":42,"Nombre":"Auxiliar de Laboratorio"},{"id":250,"Nombre":"Secretariado"},{"id":53,"Nombre":"Electricista"},{"id":208,"Nombre":"Conserje"},{"id":99,"Nombre":"Electricista"},{"id":155,"Nombre":"Contador"},{"id":138,"Nombre":"Conserje"},{"id":64,"Nombre":"Auxiliar de Laboratorio"},{"id":140,"Nombre":"Secretariado"},{"id":56,"Nombre":"Auxiliar de Laboratorio"},{"id":207,"Nombre":"Contador"},{"id":232,"Nombre":"Operador de Maquina"},{"id":247,"Nombre":"Auxiliar de Laboratorio"},{"id":193,"Nombre":"Auxiliar de Laboratorio"},{"id":59,"Nombre":"Secretariado"},{"id":116,"Nombre":"Secretariado"},{"id":219,"Nombre":"Secretariado"},{"id":188,"Nombre":"Electricista"},{"id":73,"Nombre":"Secretariado"},{"id":122,"Nombre":"Conserje"},{"id":33,"Nombre":"Operador de Maquina"},{"id":183,"Nombre":"Auxiliar de Laboratorio"},{"id":236,"Nombre":"Operador de Maquina"},{"id":184,"Nombre":"Auxiliar de Laboratorio"},{"id":135,"Nombre":"Auxiliar de Laboratorio"},{"id":170,"Nombre":"Electricista"},{"id":239,"Nombre":"Contador"},{"id":23,"Nombre":"Secretariado"},{"id":75,"Nombre":"Auxiliar de Laboratorio"},{"id":45,"Nombre":"Electricista"},{"id":154,"Nombre":"Secretariado"},{"id":130,"Nombre":"Conserje"},{"id":205,"Nombre":"Contador"},{"id":36,"Nombre":"Secretariado"},{"id":26,"Nombre":"Operador de Maquina"},{"id":209,"Nombre":"Electricista"},{"id":126,"Nombre":"Auxiliar de Laboratorio"},{"id":125,"Nombre":"Contador"},{"id":35,"Nombre":"Contador"},{"id":241,"Nombre":"Conserje"},{"id":206,"Nombre":"Contador"},{"id":65,"Nombre":"Contador"},{"id":255,"Nombre":"Operador de Maquina"},{"id":245,"Nombre":"Electricista"},{"id":185,"Nombre":"Operador de Maquina"},{"id":27,"Nombre":"Contador"},{"id":243,"Nombre":"Auxiliar de Laboratorio"},{"id":195,"Nombre":"Auxiliar de Laboratorio"},{"id":25,"Nombre":"Operador de Maquina"},{"id":39,"Nombre":"Auxiliar de Laboratorio"},{"id":162,"Nombre":"Secretariado"},{"id":66,"Nombre":"Contador"},{"id":86,"Nombre":"Conserje"},{"id":106,"Nombre":"Conserje"},{"id":227,"Nombre":"Operador de Maquina"},{"id":90,"Nombre":"Contador"},{"id":178,"Nombre":"Operador de Maquina"},{"id":61,"Nombre":"Contador"},{"id":201,"Nombre":"Conserje"},{"id":124,"Nombre":"Conserje"},{"id":240,"Nombre":"Electricista"},{"id":235,"Nombre":"Auxiliar de Laboratorio"},{"id":11,"Nombre":"Operador de Maquina"},{"id":19,"Nombre":"Electricista"},{"id":167,"Nombre":"Secretariado"},{"id":203,"Nombre":"Auxiliar de Laboratorio"},{"id":181,"Nombre":"Contador"},{"id":165,"Nombre":"Contador"},{"id":14,"Nombre":"Operador de Maquina"},{"id":7,"Nombre":"Auxiliar de Laboratorio"},{"id":204,"Nombre":"Electricista"},{"id":34,"Nombre":"Auxiliar de Laboratorio"},{"id":89,"Nombre":"Auxiliar de Laboratorio"},{"id":182,"Nombre":"Electricista"},{"id":157,"Nombre":"Operador de Maquina"},{"id":60,"Nombre":"Operador de Maquina"},{"id":175,"Nombre":"Contador"},{"id":146,"Nombre":"Operador de Maquina"},{"id":252,"Nombre":"Operador de Maquina"},{"id":17,"Nombre":"Conserje"},{"id":213,"Nombre":"Secretariado"},{"id":81,"Nombre":"Auxiliar de Laboratorio"},{"id":49,"Nombre":"Secretariado"},{"id":57,"Nombre":"Auxiliar de Laboratorio"},{"id":109,"Nombre":"Electricista"},{"id":70,"Nombre":"Secretariado"},{"id":161,"Nombre":"Operador de Maquina"},{"id":254,"Nombre":"Conserje"},{"id":169,"Nombre":"Conserje"},{"id":63,"Nombre":"Secretariado"},{"id":37,"Nombre":"Operador de Maquina"},{"id":120,"Nombre":"Electricista"},{"id":244,"Nombre":"Conserje"},{"id":222,"Nombre":"Secretariado"},{"id":52,"Nombre":"Auxiliar de Laboratorio"},{"id":107,"Nombre":"Contador"},{"id":91,"Nombre":"Auxiliar de Laboratorio"},{"id":104,"Nombre":"Operador de Maquina"},{"id":191,"Nombre":"Contador"},{"id":246,"Nombre":"Contador"},{"id":82,"Nombre":"Electricista"},{"id":215,"Nombre":"Operador de Maquina"},{"id":114,"Nombre":"Contador"},{"id":97,"Nombre":"Electricista"},{"id":87,"Nombre":"Contador"},{"id":9,"Nombre":"Contador"},{"id":111,"Nombre":"Auxiliar de Laboratorio"},{"id":112,"Nombre":"Conserje"},{"id":145,"Nombre":"Auxiliar de Laboratorio"},{"id":21,"Nombre":"Electricista"},{"id":84,"Nombre":"Contador"},{"id":79,"Nombre":"Conserje"},{"id":137,"Nombre":"Secretariado"},{"id":190,"Nombre":"Operador de Maquina"},{"id":15,"Nombre":"Operador de Maquina"},{"id":220,"Nombre":"Electricista"},{"id":8,"Nombre":"Conserje"},{"id":78,"Nombre":"Auxiliar de Laboratorio"},{"id":62,"Nombre":"Operador de Maquina"},{"id":173,"Nombre":"Electricista"},{"id":105,"Nombre":"Operador de Maquina"},{"id":118,"Nombre":"Conserje"},{"id":225,"Nombre":"Operador de Maquina"},{"id":54,"Nombre":"Auxiliar de Laboratorio"},{"id":38,"Nombre":"Auxiliar de Laboratorio"},{"id":83,"Nombre":"Secretariado"},{"id":151,"Nombre":"Auxiliar de Laboratorio"},{"id":159,"Nombre":"Auxiliar de Laboratorio"},{"id":168,"Nombre":"Secretariado"},{"id":67,"Nombre":"Auxiliar de Laboratorio"},{"id":229,"Nombre":"Secretariado"},{"id":172,"Nombre":"Auxiliar de Laboratorio"},{"id":230,"Nombre":"Electricista"},{"id":198,"Nombre":"Conserje"},{"id":152,"Nombre":"Conserje"},{"id":143,"Nombre":"Auxiliar de Laboratorio"},{"id":189,"Nombre":"Secretariado"},{"id":50,"Nombre":"Secretariado"},{"id":210,"Nombre":"Auxiliar de Laboratorio"},{"id":242,"Nombre":"Electricista"},{"id":192,"Nombre":"Conserje"},{"id":43,"Nombre":"Conserje"},{"id":218,"Nombre":"Secretariado"},{"id":127,"Nombre":"Auxiliar de Laboratorio"},{"id":202,"Nombre":"Contador"},{"id":148,"Nombre":"Electricista"},{"id":5,"Nombre":"Operador de Maquina"},{"id":44,"Nombre":"Conserje"},{"id":142,"Nombre":"Conserje"},{"id":68,"Nombre":"Operador de Maquina"},{"id":93,"Nombre":"Electricista"},{"id":171,"Nombre":"Operador de Maquina"},{"id":237,"Nombre":"Contador"},{"id":139,"Nombre":"Conserje"},{"id":194,"Nombre":"Contador"},{"id":234,"Nombre":"Secretariado"},{"id":4,"Nombre":"Electricista"},{"id":224,"Nombre":"Contador"},{"id":129,"Nombre":"Contador"},{"id":10,"Nombre":"Contador"},{"id":211,"Nombre":"Electricista"},{"id":31,"Nombre":"Operador de Maquina"},{"id":133,"Nombre":"Electricista"},{"id":200,"Nombre":"Operador de Maquina"},{"id":94,"Nombre":"Secretariado"},{"id":101,"Nombre":"Contador"},{"id":123,"Nombre":"Electricista"},{"id":248,"Nombre":"Secretariado"},{"id":180,"Nombre":"Conserje"},{"id":98,"Nombre":"Secretariado"},{"id":249,"Nombre":"Contador"},{"id":187,"Nombre":"Secretariado"},{"id":166,"Nombre":"Conserje"},{"id":115,"Nombre":"Contador"},{"id":197,"Nombre":"Operador de Maquina"},{"id":22,"Nombre":"Secretariado"},{"id":121,"Nombre":"Secretariado"},{"id":13,"Nombre":"Contador"},{"id":80,"Nombre":"Conserje"},{"id":150,"Nombre":"Secretariado"},{"id":110,"Nombre":"Operador de Maquina"},{"id":72,"Nombre":"Auxiliar de Laboratorio"},{"id":24,"Nombre":"Contador"},{"id":100,"Nombre":"Conserje"},{"id":164,"Nombre":"Contador"},{"id":51,"Nombre":"Secretariado"},{"id":233,"Nombre":"Auxiliar de Laboratorio"},{"id":216,"Nombre":"Conserje"},{"id":28,"Nombre":"Electricista"},{"id":46,"Nombre":"Electricista"},{"id":231,"Nombre":"Secretariado"},{"id":77,"Nombre":"Operador de Maquina"},{"id":174,"Nombre":"Contador"},{"id":223,"Nombre":"Auxiliar de Laboratorio"}],255]}
+    Tipo --con filtro
+        Enviado
+            {
+                "data": {
+                    "Username": "Goku",
+                    "Filtro": "Carlos"
+                }
+            }
+        Recibido
+            {"result":[[{"id":16,"Nombre":"Auxiliar de Laboratorio"},{"id":12,"Nombre":"Secretariado"}],4]}
+EditarEmpleado
+    Enviado
+        {
+            "data": {
+                "Usuario":"Goku",
+                "idObjecive":"4",
+                "NombreNuevo":"JuanitoVargas",
+                "TipoIdNuevo":"1", 
+                "ValorID":"1111111111", 
+                "FechaNacimiento":"NULL", 
+                "IdPuesto":"1",
+                "IdDepartamento":"1"
+            }
+        }
+    Recibido
+        {"result":[[],3]}
+GetPuestos
+    Enviado
+
+    Recibido
+        {"result":[[{"id":1,"Nombre":"Electricista"},{"id":2,"Nombre":"Auxiliar de Laboratorio"},{"id":3,"Nombre":"Operador de Maquina"},{"id":4,"Nombre":"Contador"},{"id":5,"Nombre":"Conserje"},{"id":6,"Nombre":"Secretariado"}],6]}
+GetDepartamentos
+    Enviado
+
+    Recibido
+        {"result":[[{"id":1,"Nombre":"Enlaminado"},{"id":2,"Nombre":"Laboratorio"},{"id":3,"Nombre":"Bodega de materiales"},{"id":4,"Nombre":"Bodega de producto terminado"},{"id":5,"Nombre":"Recursos Humanos"}],5]}
+GetIdentificaciones
+    Enviado
+
+    Recibido
+        {"result":[[{"id":1,"Nombre":"Cedula Nacional"},{"id":2,"Nombre":"Cedula Residente"},{"id":3,"Nombre":"Pasaporte"},{"id":4,"Nombre":"Cedula Juridica"},{"id":5,"Nombre":"Permiso de Trabajo"},{"id":6,"Nombre":"Cedula Extranjera"}],6]}
+InsertarEmpleado
+    Enviado
+        {
+            "data": {
+                "Usuario":"Goku",
+                "Nombre":"'Pedro Picapiedra'",
+                "TipoId":"1",
+                "ValorID":"12344556", 
+                "FechaNacimiento":"NULL", 
+                "IdPuesto":"1", 
+                "IdDepartamento":"1"
+            }
+        }
+        Recibido
+        {"result":true}
+Impersonar
+    Enviado
+        {
+            "data": {
+                "Usuario":"Goku",
+                "IDObjetivo":"4"
+            }
+        }
+    Recibido
+        {"result":true}
+EliminarEmpleado
+    Enviado
+        {
+            "data": {
+                "Usuario":"Goku",
+                "IDEmpleadoAEliminar":"4"
+            }
+        }
+    Recibido
+        {"result":true}
+DejarImpersonar
+    Enviado
+        {
+            "data": {
+                "Usuario":"Goku",
+                "IdUsuarioEmpersonado":"4"
+            }
+        }
+    Recibido
+        {"result":true}

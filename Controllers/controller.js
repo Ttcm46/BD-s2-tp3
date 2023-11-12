@@ -67,8 +67,8 @@ export const GetIdentificacionesController = async(req = request, res = response
 export const InsertarEmpleadoController = async(req = request, res = response) => {
     const {Usuario, Nombre, TipoId,
         ValorID, FechaNacimiento,
-        IdPuesto, IdDepartamento} =  req.body
-    console.log(req.body)
+        IdPuesto, IdDepartamento} =  req.body.data
+    console.log(req.body.data)
     const result = await InsertarEmpleadoRepo(Usuario, Nombre, TipoId,
         ValorID, FechaNacimiento,
         IdPuesto, IdDepartamento)
@@ -78,8 +78,8 @@ export const InsertarEmpleadoController = async(req = request, res = response) =
     })
 }
 export const ImpersonarController = async(req = request, res = response) => {
-    const {Usuario, IDObjetivo} = req.body
-    console.log(req.body)
+    const {Usuario, IDObjetivo} = req.body.data
+    console.log(req.body.data)
     const result = await ImpersonarRepo(Usuario, IDObjetivo)
     
     res.status(200).json({
@@ -89,8 +89,8 @@ export const ImpersonarController = async(req = request, res = response) => {
 export const EliminarEmpleadoController = async(req = request, res = response) => {
     
     const {Usuario,
-        IDEmpleadoAEliminar} = req.body
-    console.log(req.body)
+        IDEmpleadoAEliminar} = req.body.data
+    console.log(req.body.data)
     const result = await EliminarEmpleadoRepo(Usuario,
         IDEmpleadoAEliminar)
     
@@ -99,7 +99,7 @@ export const EliminarEmpleadoController = async(req = request, res = response) =
     })
 }
 export const PlanillaSemanalController = async(req = request, res = response) => {
-    const {Usuario} = req.body
+    const {Usuario} = req.body.data
     const result = await PlanillaSemanalRepo(Usuario)
     
     res.status(200).json({
@@ -107,7 +107,7 @@ export const PlanillaSemanalController = async(req = request, res = response) =>
     })
 }
 export const PlanillaMensualController = async(req = request, res = response) => {
-    const {Usuario} = req.body
+    const {Usuario} = req.body.data
     const result = await PlanillaMensualRepo(Usuario)
     
     res.status(200).json({
@@ -116,7 +116,7 @@ export const PlanillaMensualController = async(req = request, res = response) =>
 }
 export const DejarImpersonarController = async(req = request, res = response) => {
     const {Usuario,
-        IdUsuarioEmpersonado} = req.body
+        IdUsuarioEmpersonado} = req.body.data
     const result = await DejarImpersonarRepo(Usuario,
         IdUsuarioEmpersonado)
     

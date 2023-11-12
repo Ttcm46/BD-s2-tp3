@@ -2,7 +2,7 @@
 
 import { Sequelize } from "sequelize";
 
-const databaseName = 'BDp1'
+const databaseName = 'Proyecto3'
 
 const database = new Sequelize(databaseName, 'bob1234', '1234', {
     host: 'DESKTOP-90QSCBC',

@@ -3,7 +3,7 @@ import database from "../Config/database.js";
 //LoginRepo, LogoutRepo, ListarEmpleadosRepo, ListarEmpleadosRepo, EditarEmpleadoRepo, GetPuestosRepo, GetDepartamentosRepo, GetIdentificacionesRepo, InsertarEmpleadoRepo, ImpersonarRepo, EliminarEmpleadoRepo, PlanillaSemanalRepo, PlanillaMensualRepo, DejarImpersonarRepo
 export const LoginRepo = async (Username, Password) => {
    try {
-      const stringSende='EXEC GetAllArticulosByCantidad  @QuantitySearch=:amount';
+      const stringSende='EXEC Login @Username=?, @Password=?';
       const result = await database.query(
          stringSende,
         {
@@ -22,14 +22,13 @@ export const LoginRepo = async (Username, Password) => {
 
 export const LogoutRepo = async (Usuario) => {
    try {
-      const stringSende='EXEC GetAllArticulosByName ';
-      const param='@NameSearch_In=:name'
+      const stringSende='EXEC Logout @NameSearch_In=?'
 
       const result = await database.query(
-      (stringSende+param),
+      (stringSende),
         {
           replacements: {Usuario},
-          type: Sequelize.QueryTypes.RAW
+          type: Sequelize.QueryTypes.RAW 
         }
       );
       console.log('Retrieved succesfully');
@@ -44,7 +43,7 @@ export const LogoutRepo = async (Usuario) => {
 
 export const ListarEmpleadosRepo = async (Usuario,Filtro) => {
    try {
-      const stringSende='EXEC GetArticulosByCode  @codigo_in=:code';
+      const stringSende='EXEC ListarEmpleados @Username=? ,@Filter=?';
       const result = await database.query(
          stringSende,
         {
@@ -68,7 +67,7 @@ export const EditarEmpleadoRepo = async (Usuario,
    TipoIdNuevo, ValorID, FechaNacimiento, IdPuesto,
    IdDepartamento) => {
    try {
-      const stringSende='EXEC GetAllArticulosByClass  @Article_Class=:code';
+      const stringSende='EXEC EditarEmpleadoo  @Username=?, @idObjective=?, @NombreNuevo=?, @TipoIdNuevo=?, @ValorID=?, @FechaNacimiento=?, @IdPuesto=?, @IdDepartamento=?';
       const result = await database.query(
          stringSende,
         {
@@ -92,7 +91,7 @@ export const EditarEmpleadoRepo = async (Usuario,
 export const GetPuestosRepo = async () => {
    try {
       // Llama al stored procedure utilizando Sequelize
-      const result = await database.query('EXEC GetClases', {
+      const result = await database.query('EXEC GetPuestos', {
         type: Sequelize.QueryTypes.RAW
       });
       //en maq windows, esta mandando un array de 2 elems:[0] respuesta de server sql con forma de tabla, basicamente es una matriz,[1]elementos de
@@ -108,7 +107,7 @@ export const GetPuestosRepo = async () => {
 export const GetDepartamentosRepo = async () => {
    try {
       // Llama al stored procedure utilizando Sequelize
-      const result = await database.query('EXEC GetClases', {
+      const result = await database.query('EXEC GetDepartamentos', {
         type: Sequelize.QueryTypes.RAW
       });
       //en maq windows, esta mandando un array de 2 elems:[0] respuesta de server sql con forma de tabla, basicamente es una matriz,[1]elementos de
@@ -124,7 +123,7 @@ export const GetDepartamentosRepo = async () => {
 export const GetIdentificacionesRepo = async () => {
    try {
       // Llama al stored procedure utilizando Sequelize
-      const result = await database.query('EXEC GetClases', {
+      const result = await database.query('EXEC Identificaciones', {
         type: Sequelize.QueryTypes.RAW
       });
       //en maq windows, esta mandando un array de 2 elems:[0] respuesta de server sql con forma de tabla, basicamente es una matriz,[1]elementos de
@@ -141,7 +140,7 @@ export const InsertarEmpleadoRepo = async (Usuario, Nombre, TipoId,
    ValorID, FechaNacimiento,
    IdPuesto, IdDepartamento) => {
    try {
-      const stringSende='EXEC InsertUsuario  @UserName_In=:UserName, @UserPass_In=:Password';
+      const stringSende='EXEC InsertarEmpleado @Username=?, @Nombre=?, @TipoID=?, @FechaNacimiento=?, @IdPuesto=?, @IdDepartamento=?';
       const result = await database.query(
          stringSende,
         {
@@ -163,7 +162,7 @@ export const InsertarEmpleadoRepo = async (Usuario, Nombre, TipoId,
 
 export const ImpersonarRepo = async (Usuario, IDObjetivo) => {
    try {
-      const stringSende='EXEC LoginCheck  @UserName_In=:UserName, @UserPass_In=:Password';
+      const stringSende='EXEC Impersonar  @Userame_In=?, @idObjective==?';
       const result = await database.query(
          stringSende,
         {
@@ -181,18 +180,11 @@ export const ImpersonarRepo = async (Usuario, IDObjetivo) => {
    }
 }
 
-export const EliminarEmpleadoRepo = async (Usuario,
-   IDEmpleadoAEliminar) => {
+export const EliminarEmpleadoRepo = async (Usuario,IDEmpleadoAEliminar) => {
    try {
-      console.log("HERE: ",target)
-      const stringSende='EXEC UpdateArticulo  ';
-      const stringParamsA='@Target=:'
-      const stringParamsB='target,@nombre_in=:'
-      const stringParamsC='name,@precio_in=:'
-      const stringParamsD='price,@codigo_in=:'
-      const stringParamsE='code,@Clase_Articulo_in=:clase'
+      const stringSende='EXEC EliminarEmpleado @Username=?, @idObjective=?';
       const result = await database.query(
-         stringSende+stringParamsA+stringParamsB+stringParamsC+stringParamsD+stringParamsE,
+         stringSende,
         {
           replacements: {Usuario,
             IDEmpleadoAEliminar},
@@ -211,7 +203,7 @@ export const EliminarEmpleadoRepo = async (Usuario,
 
 export const PlanillaSemanalRepo = async (Usuario) => {
    try {
-      const stringSende='EXEC BorrarArticulo  @Target=:code';
+      const stringSende='EXEC ConsultarPlanillaSemanal  @Username=?';
       const result = await database.query(
          stringSende,
         {
@@ -231,7 +223,7 @@ export const PlanillaSemanalRepo = async (Usuario) => {
 export const PlanillaMensualRepo = async (Usuario) => {
 
    try {
-      const stringSende='EXEC BorrarArticulo  @Target=:code';
+      const stringSende='EXEC ConsultarPlanillaMensual @Username=?';
       const result = await database.query(
          stringSende,
         {
@@ -252,7 +244,7 @@ export const DejarImpersonarRepo = async (Usuario,
    IdUsuarioEmpersonado) => {
 
    try {
-      const stringSende='EXEC BorrarArticulo  @Target=:code';
+      const stringSende='EXEC DejarImpersonar  @Userame_In=?, @idObjective==?';
       const result = await database.query(
          stringSende,
         {

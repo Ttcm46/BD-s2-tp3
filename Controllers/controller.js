@@ -1,5 +1,5 @@
 import { response, request } from "express";
-import { LoginRepo, LogoutRepo, ListarEmpleadosRepo, ListarEmpleadosRepo, EditarEmpleadoRepo, GetPuestosRepo, GetDepartamentosRepo, GetIdentificacionesRepo, InsertarEmpleadoRepo, ImpersonarRepo, EliminarEmpleadoRepo, PlanillaSemanalRepo, PlanillaMensualRepo, DejarImpersonarRepo } from "../Repo/repo.js";
+import { LoginRepo, LogoutRepo, ListarEmpleadosRepo, EditarEmpleadoRepo, GetPuestosRepo, GetDepartamentosRepo, GetIdentificacionesRepo, InsertarEmpleadoRepo, ImpersonarRepo, EliminarEmpleadoRepo, PlanillaSemanalRepo, PlanillaMensualRepo, DejarImpersonarRepo } from "../Repo/repo.js";
 
 
 export const LoginController = async(req = request, res = response) => {
@@ -20,7 +20,7 @@ export const LogoutController = async(req = request, res = response) => {
 }
 export const ListarEmpleadosController = async(req = request, res = response) => {
     const {Usuario,Filtro} = req.body.data
-    const result = await GetArticulosByCodeRepo(Usuario,Filtro)
+    const result = await ListarEmpleadosRepo(Usuario,Filtro)
     
     res.status(200).json({
         result

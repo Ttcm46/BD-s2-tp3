@@ -240,7 +240,7 @@ export const PlanillaSemanalRepo = async (Usuario) => {
         }
       );
       console.log('Producto eliminado exitosamente');
-      return true;
+      return result;
   
    } catch (error) {
       console.log(error);
@@ -261,7 +261,7 @@ export const PlanillaMensualRepo = async (Usuario) => {
         }
       );
       console.log('Producto eliminado exitosamente');
-      return true;
+      return result;
   
    } catch (error) {
       console.log(error);
